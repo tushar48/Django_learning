@@ -14,5 +14,8 @@ def about(request):
 def contact(request):
     return HttpResponse("Contact Page")
 
+#ORM Mental Model
+# Python Object ----> Django ORM -----> DataBase Row
+
 
 

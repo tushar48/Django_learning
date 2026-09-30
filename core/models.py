@@ -15,7 +15,8 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     email = models.EmailField()
-    
+    course = models.CharField(max_length=300,default="Not Specified")
+
     def __str__(self):
         return self.name
 

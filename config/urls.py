@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home,about,contact
+from core.views import home,about,contact,products,product_detail
 
 #manage.py ----> Django project ko commands dene ka entry point
 #settings.py ---> Project Configuration
@@ -25,5 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home),
     path('about/',about),
-    path('contact/',contact)
+    path('contact/',contact),
+    path('products/',products),
+    path('products/<int:id>/',product_detail)
 ]

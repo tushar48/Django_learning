@@ -20,7 +20,10 @@
 
 {% empty %}
 <p> No products Available </p>
+
+
 {% endfor %}
+<a href="{% url 'create_product' %}">Add new Product</a>
 {%endblock%}
 
 

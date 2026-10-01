@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home,about,contact,products,product_detail
+from core.views import home,about,contact,products,product_detail,create_product
 
 #manage.py ----> Django project ko commands dene ka entry point
 #settings.py ---> Project Configuration
@@ -27,5 +27,6 @@ urlpatterns = [
     path('about/',about),
     path('contact/',contact),
     path('products/',products,name='products'),
-    path('products/<int:id>/',product_detail,name='product_detail')
+    path('products/<int:id>/',product_detail,name='product_detail'),
+    path('products/create/',create_product,name='create_product')
 ]

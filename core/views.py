@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Product
 from django.shortcuts import get_object_or_404
@@ -43,4 +43,24 @@ def product_detail(request,id):
 # Python Object ----> Django ORM -----> DataBase Row
 
 
+def create_product(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
 
+        if not name:
+            return render (request,'create_product.html',{'error': 'Product name is Required'})
+
+        if not price:
+            return render (request,'create_product.html',{'error': 'Product price is Required'})
+
+        if not quantity:
+            return render (request,'create_product.html',{'error': 'Product quantity is Required'})
+        
+        Product.objects.create(name=name,price=price,quantity=quantity)
+        
+        return redirect('products')
+    
+        
+    return render(request,'create_product.html')

@@ -1,4 +1,33 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Products {% endblock %}
+
+
+{% block content%}
+<h1>Products</h1>
+{% for product in products %}
+<div class="product">
+    <a href="{% url 'product_detail' product.id %}">
+        <h2> {{product.name}}</h2>
+    </a>
+    <p>Price : {{product.price}}</p>
+    {% if product.quantity == 0 %}
+    <p>Out of Stock</p>
+    {% else %}
+
+    <p>Quantity : {{product.quantity}}</p>
+    {% endif %}
+</div>
+
+{% empty %}
+<p> No products Available </p>
+{% endfor %}
+{%endblock%}
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +37,9 @@
 <body>
     <h1>Products</h1>
     {% for product in products %}
-    <h2> {{product.name}}</h2>
+    <a href="{% url 'product_detail' product.id %}"><h2> {{product.name}}</h2></a>
     <p>Price : {{product.price}}</p>
     <p>Quantity : {{product.quantity}}</p>
     {% endfor %}
 </body>
-</html>
+</html> -->

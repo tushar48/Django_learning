@@ -15,6 +15,11 @@
     {% else %}
 
     <p>Quantity : {{product.quantity}}</p>
+    <a href="{% url 'edit_product' product.id%}">Want to Edit this product</a>
+    <br>
+    <br>
+    <a href="{% url 'delete_product' product.id %}"
+        onclick="return confirm('Are you sure you want to delete this product? ')">Delete this product</a>
     {% endif %}
 </div>
 
@@ -23,6 +28,7 @@
 
 
 {% endfor %}
+<br>
 <a href="{% url 'create_product' %}">Add new Product</a>
 {%endblock%}
 

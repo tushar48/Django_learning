@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
-{% block title %} Create Product {% endblock %}
 
+{% block title %} Edit Product {% endblock %}
 
 {% block content %}
 <form method="POST">
 
     <!-- For verifying the Post Request we use csrf tokens -->
     {% csrf_token %}
-    
+
     <!-- python will generate form field automatically by using the class forms.py -->
-     <!-- Django mere form object ko HTML form fields main render kar do -->
-      
+    <!-- Django mere form object ko HTML form fields main render kar do -->
+
     {{form.as_p}}
 
     <button type="submit">
-        Add Product
+        Update Product
     </button>
 </form>
-
-
 {% endblock %}

@@ -1,4 +1,4 @@
-{% load static %} 
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +17,11 @@
         <a href="/about">About</a>
     </nav>
     <hr>
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock %}

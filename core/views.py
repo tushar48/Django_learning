@@ -20,8 +20,18 @@ def contact(request):
     return HttpResponse("Contact Page")
 
 def products(request):
+    search_query = request.GET.get('search',"")
     products = Product.objects.all()
-   
+    
+    if search_query:
+        products = products.filter(name__icontains=search_query) # ye line ka matlab hai ki agar user ne search query diya hai toh usko filter kar do. name__icontains ka matlab hai ki name me search_query jo bhi hai usko filter kar do. Ye case insensitive hai. Agar user ne "t" diya hai toh "T" bhi match karega.
+
+    context = {
+        'products' : products,
+        'search_query' : search_query
+    }
+    
+    
     #output = "<h1>Products</h1>"
     #for product in products:
         # output += f"""
@@ -34,7 +44,7 @@ def products(request):
         # output += f"{product.name} - {product.price} <br>"
     # return HttpResponse(output)
         
-    return render(request,'products.html',{'products' : products})
+    return render(request,'products.html', context)
 
 
 

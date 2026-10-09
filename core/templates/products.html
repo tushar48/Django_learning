@@ -4,42 +4,50 @@
 
 {% block content%}
 <h1>Products</h1>
-{% for product in products %}
-<div class="product">
-    <a href="{% url 'product_detail' product.id %}">
-        <h2> {{product.name}}</h2>
-    </a>
-    <p>Price : {{product.price}}</p>
-    {% if product.quantity == 0 %}
-    <p>Out of Stock</p>
-    {% else %}
 
-    <p>Quantity : {{product.quantity}}</p>
-    <a href="{% url 'edit_product' product.id%}">Want to Edit this product</a>
+
+<form method="GET" action="{% url 'products' %}">
+    <input type="text" name="search" placeholder="Search Products" value="{{search_query}}">
+    <button type="Submit"> Search </button>
+
+
+
+    {% for product in products %}
+    <div class="product">
+        <a href="{% url 'product_detail' product.id %}">
+            <h2> {{product.name}}</h2>
+        </a>
+        <p>Price : {{product.price}}</p>
+        {% if product.quantity == 0 %}
+        <p>Out of Stock</p>
+        {% else %}
+
+        <p>Quantity : {{product.quantity}}</p>
+        <a href="{% url 'edit_product' product.id%}">Want to Edit this product</a>
+        <br>
+        <br>
+        <form method="POST" action="{% url 'delete_product' product.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+
+        </form>
+        {% endif %}
+    </div>
+
+    {% empty %}
+    <p> No products Available </p>
+
+
+    {% endfor %}
     <br>
-    <br>
-    <form method="POST" action="{% url 'delete_product' product.id %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-
-</form>
-    {% endif %}
-</div>
-
-{% empty %}
-<p> No products Available </p>
-
-
-{% endfor %}
-<br>
-<a href="{% url 'create_product' %}">Add new Product</a>
-{%endblock%}
+    <a href="{% url 'create_product' %}">Add new Product</a>
+    {%endblock%}
 
 
 
 
 
-<!-- <!DOCTYPE html>
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
